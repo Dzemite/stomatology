@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "http://link.to.github",
+    "title": "TehLab Forms bug report service schema",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "port": {
+            "type": "number"
+        },
+        "jwtSecret": {
+            "type": "string"
+        },
+        "authUrl": {
+            "type": "string"
+        },
+        "jiraHost": {
+            "type": "string"
+        },
+        "jiraAuthConfig": {
+            "type": "object",
+            "properties": {
+                "login": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "defaultJiraConfig": {
+            "type": "object",
+            "properties": {
+                "serviceDeskId": {
+                    "type": "string"
+                },
+                "requestTypeId": {
+                    "type": "string"
+                },
+                "defaultJiraConfig": {
+                    "type": "object",
+                    "properties": {
+                        "summary": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requestParticipants": {
+                    "type": "array"
+                },
+                "raiseOnBehalfOf": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceName": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "port",
+        "authConfig",
+        "authUrl",
+        "jiraHost",
+        "defaultJiraConfig",
+        "jiraAuthConfig",
+        "instanceName"
+    ],
+    "additionalProperties": false
+  }
+  
