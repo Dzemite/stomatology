@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "http://link.to.github",
+    "title": "TehLab Forms auth service schema",
+    "type": "object",
+    "properties": {
+      "$schema": {
+        "type": "string"
+       },
+      "port": {
+        "type": "number"
+      },
+      "jwtSecret": {
+        "type": "string"
+      },
+      "authStrategy": {
+          "type": "string",
+          "enum": ["local", "WindowsAuthentication"]
+      },
+      "adConfig": {
+          "type": "object",
+          "properties": {
+            "url": {
+                "type": "string"
+            },
+            "base": {
+                "type": "string"
+            },
+            "bindDN": {
+                "type": "string"
+            },
+            "bindCredentials": {
+                "type": "string"
+            },
+            "search_query": {
+                "type": "string"
+            },
+            "reconnect": {
+                "type": "boolean"
+            },
+            "connectTimeout": {
+                "type": "number"
+            },
+            "timeout": {
+                "type": "number"
+            }
+          },
+          "required": [
+              "url",
+              "base",
+              "bindDN",
+              "bindCredentials"
+          ],
+          "additionalProperties": false
+      },
+      "mongoDbUrl": {
+          "type": "string"
+      }
+    },
+    "required": [
+        "port",
+        "jwtSecret",
+        "authStrategy",
+        "mongoDbUrl"
+    ],
+    "additionalProperties": false
+  }
+  

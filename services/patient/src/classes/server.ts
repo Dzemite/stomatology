@@ -5,31 +5,33 @@ import * as cors from "cors";
 import { Application, Request, Response } from "express";
 import { APP_CONFIG } from "../config";
 import * as mongoose from "mongoose";
+import { patientGet } from "../middleware/patient-get.middleware";
+import { getPatient } from "../routes/get-patient";
 
 export class Server {
 
     private _app: Application;
 
-    private _connectToDb(): Promise<any> {
+    private _connectToDb() {
         return mongoose.connect(APP_CONFIG.mongoDbUrl);
     }
-    
+
     public start(): void {
         console.log('start server');
-        this._app.listen(APP_CONFIG.port);
-        console.log("server started at port " + APP_CONFIG.port);
-        
-        // console.log(`Connecting to MongoDB at address ${APP_CONFIG.mongoDbUrl}`);
-        // this._connectToDb().then(() => {
-        //     console.log("Connected")
-        //     this._app.listen(APP_CONFIG.port);
-        //     console.log("server started at port " + APP_CONFIG.port);
-        // })
-        // .catch((err: Error) => {
-        //     console.error(err);
-        // });
+
+        console.log(`Connecting to MongoDB at address ${APP_CONFIG.mongoDbUrl}`);
+        this._connectToDb()
+            .then(() => {
+                console.log("Connected")
+                this._app.listen(APP_CONFIG.port);
+                console.log("server started at port " + APP_CONFIG.port);
+            })
+            .catch((err: Error) => {
+                console.error(err);
+            });
     }
     constructor() {
+
         this._app = express();
         this._app.use(bodyParser.json());
         this._app.use(cors({
@@ -43,7 +45,8 @@ export class Server {
         this._app.use(bodyParser.urlencoded({
             extended: true
         }));
-        this._app.get("/data", (req: Request, res: Response) => {res.json({message: 'hello'})});
+        this._app.get("/patient/:id", patientGet);
+        this._app.get("/patient/:id", getPatient);
 
         // this._app.use("/rest/*", authorize(APP_CONFIG.jwtSecret));
         // this._app.use("/rest/*", permissionsGet);
