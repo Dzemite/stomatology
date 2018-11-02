@@ -1,0 +1,5 @@
+app
+node_modules
+config/config.json
+.vscode
+app.settings.ts
