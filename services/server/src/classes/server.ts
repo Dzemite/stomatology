@@ -50,12 +50,13 @@ export class Server {
             extended: true
         }));
 
-        this._app.all('/api/*', jwtCheck);
-
-        this._app.get("/api/auth", authorize);
-        this._app.get("/api/auth", authorizeRoute);
+        this._app.post("/auth", authorize);
+        this._app.post("/auth", authorizeRoute);
         
         this._app.post("/createUser", createUser);
+
+
+        this._app.all('/api/*', jwtCheck);
 
         this._app.get("/api/patient/:id", patientGet);
         this._app.get("/api/patient/:id", getPatient);

@@ -7,18 +7,31 @@ import { IUser } from "../interfaces/IUser";
 import jwt = require('jsonwebtoken');
 
 export const createUser = (req: Request, res: Response, next: () => void) => {
-    
-    if (!req.params.jwt) {
+
+    if (!req.body.jwt) {
+        // res.sendStatus(400);
+        console.log(req.body.jwt);
         return;
     }
-    
-    const userEnter = jwt.verify(req.params.jwt, APP_CONFIG.jwtSecret); 
+
+    // const userEnter = jwt.verify(req.body.jwt, APP_CONFIG.jwtSecret); 
 
     // if (userEnter || userEnter.login || userEnter.password) {
     //     res.sendStatus(403);
     //     return;
     // }
 
-    res.json({a : 'a'});
-    
+    UserModel.findOne({
+        username: 'superuser'
+    })
+        .then(user => {
+            console.log({user});
+            const token =  jwt.sign({user}, APP_CONFIG.jwtSecret);
+            res.json({ token });
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
 }

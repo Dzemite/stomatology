@@ -3,11 +3,21 @@ import * as jwt from "jsonwebtoken";
 import { APP_CONFIG } from "../config";
 
 export const jwtCheck = (req: Request, res: Response, next: () => void) => {
-    const token: string = req.headers["x-forms-jwt"] as string;
-    if (!token || !jwt.verify(token, APP_CONFIG.jwtSecret)) {
-        res.status(403);
-        res.redirect("/");
+    let token: string = req.headers["x-dontiatros-jwt"] as string;
+
+    if (typeof token !== 'undefined') {
+        token = token.split(' ')[1];
+
+        if (!token && !jwt.verify(token, APP_CONFIG.jwtSecret)) {
+            res.status(403);
+            res.redirect("/");
+        } else {
+            res.locals.token = token;
+            next();
+        }
+
     } else {
-        next();
+        res.sendStatus(403);
+        res.redirect("/");
     }
 }

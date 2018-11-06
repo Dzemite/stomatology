@@ -7,29 +7,29 @@ import { IUser } from "../interfaces/IUser";
 const jwt = require('jsonwebtoken');
 
 export const authorize = (req: Request, res: Response, next: () => void) => {
-    
-    const userEnter = jwt.verify(req.params.jwt, APP_CONFIG.jwtSecret); 
 
-    if (userEnter || userEnter.login || userEnter.password) {
+    const userEnter = jwt.verify(req.body.token, APP_CONFIG.jwtSecret);
+ 
+    if (userEnter || userEnter.username || userEnter.password) {
         res.sendStatus(403);
         return;
     }
-
+ 
     return UserModel.findOne({
-        username: userEnter.login
+        username: userEnter.username
     })
-    .then((user: IUser) => {
-        if (user.password === userEnter.password) {
-            jwt.sign({user: user}, APP_CONFIG.jwtSecret, (err: any, tocken: any) => {
-                res.locals.tocken = tocken;
-                next();
-            });
-        } else {
-            res.sendStatus(403);
-        }
-    })
-    .catch((err: MongoError) => {
-        res.status(404);
-        res.json({error: "User isn't found."});
-    });
+        .then((user: IUser) => {
+            if (user.password === userEnter.password) {
+                jwt.sign({ user: user }, APP_CONFIG.jwtSecret, (err: any, token: any) => {
+                    res.locals.token = token;
+                    next();
+                });
+            } else {
+                res.sendStatus(403);
+            }
+        })
+        .catch((err: MongoError) => {
+            res.status(404);
+            res.json({ error: "User isn't found." });
+        });
 }
