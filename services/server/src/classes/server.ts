@@ -60,14 +60,5 @@ export class Server {
 
         this._app.get("/api/patient/:id", patientGet);
         this._app.get("/api/patient/:id", getPatient);
-
-        // this._app.use("/rest/*", authorize(APP_CONFIG.jwtSecret));
-        // this._app.use("/rest/*", permissionsGet);
-        // this._app.use("/rest", (new PermissionChecker()).router);
-        // this._app.use(
-        //     "/rest/users", (new MongooseHandler<User>(UserModel, "username")).getRouter());
-
-        // this._app.use(
-        //     "/rest/permissions", (new MongooseHandler<Permission>(PermissionModel, "name")).getRouter());
     }
 }
