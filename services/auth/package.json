@@ -17,6 +17,7 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "gulp": "^3.9.1",
     "jwt-express": "^1.1.0",
     "mongoose": "^5.4.10",
     "passport": "^0.4.0",

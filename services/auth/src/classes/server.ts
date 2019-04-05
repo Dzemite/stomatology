@@ -2,25 +2,22 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as cors from "cors";
-import { Application, Request, Response } from "express";
+import { Application } from "express";
 import { User } from "../interfaces/user";
 import { authRoute } from "../routes/auth";
 import { authenticateRoute } from "../routes/authenticate";
-import { AppConfig } from "../interfaces/app-config";
 import { APP_CONFIG } from "../config";
 import { AuthStrategies } from "./auth-strategies";
 import * as mongoose from "mongoose";
-import { RestApiMiddlewareFactory } from "../middleware/factories/rest-api.middleware.factory";
 import { UserModel } from "../models/user.model";
-import { jwtCheck } from "../middleware/jwt-check.middleware";
 
-import { authorize, MongooseHandler } from "forms-common-libraries";
 import { PermissionChecker } from "../middleware/permissions-check.middleware";
 import { permissionsGet } from "../middleware/permissions-get.middleware";
 import { getUserPermissions } from "../routes/get-user-permissions";
 import { Permission } from "../interfaces/permission";
 import { PermissionModel } from "../models/permission.model";
 import * as passport from "passport";
+import { authorize } from "../tools/authorize";
 
 export class Server {
 
@@ -77,10 +74,10 @@ export class Server {
         this._app.use("/rest/*", authorize(APP_CONFIG.jwtSecret));
         this._app.use("/rest/*", permissionsGet);
         this._app.use("/rest", (new PermissionChecker()).router);
-        this._app.use(
-            "/rest/users", (new MongooseHandler<User>(UserModel, "username")).getRouter());
+        // this._app.use(
+        //     "/rest/users", (new MongooseHandler<User>(UserModel, "username")).getRouter());
 
-        this._app.use(
-            "/rest/permissions", (new MongooseHandler<Permission>(PermissionModel, "name")).getRouter());
+        // this._app.use(
+        //     "/rest/permissions", (new MongooseHandler<Permission>(PermissionModel, "name")).getRouter());
     }
 }
