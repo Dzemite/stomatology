@@ -3,11 +3,8 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons
-import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 import LockOutlined from "@material-ui/icons/LockOutlined";
-// React icons
-import { FaFacebook, FaTwitter, FaGooglePlusG } from 'react-icons/fa';
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
@@ -17,13 +14,14 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
+
+import request from "../../../node_modules/superagent";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -33,6 +31,7 @@ class LoginPage extends React.Component {
       cardAnimaton: "cardHidden"
     };
   }
+
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
@@ -42,9 +41,35 @@ class LoginPage extends React.Component {
       700
     );
   }
-  loging(msg) {
-    console.log(this.state);
+
+  login() {
+    // fetch('http://localhost:8081/auth', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     login: this.state.login,
+    //     password: this.state.password,
+    //   })
+    // })
+    // .then(res => {
+    //   console.log(res.value());
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // });
+
+    request
+      .post('http://localhost:8081/auth')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .send({ login: this.state.login, password: this.state.password })
+      .end(function (err, res) {
+        console.log(res.body);
+      });
   }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -52,7 +77,7 @@ class LoginPage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand="Material Kit React"
+          brand="Stom"
           rightLinks={<HeaderLinks />}
           {...rest}
         />
@@ -69,39 +94,6 @@ class LoginPage extends React.Component {
               <GridItem xs={12} sm={12} md={4}>
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
-                    <CardHeader color="primary" className={classes.cardHeader}>
-                      <h4>Login</h4>
-                      <div className={classes.socialLine}>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <FaTwitter />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <FaFacebook />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <FaGooglePlusG />
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <p className={classes.divider}>Or Be Classical</p>
                     <CardBody>
                       <CustomInput
                         labelText="Login..."
@@ -117,6 +109,7 @@ class LoginPage extends React.Component {
                             </InputAdornment>
                           )
                         }}
+                        onInput={(login) => this.setState({ login })}
                       />
                       <CustomInput
                         labelText="Password"
@@ -132,11 +125,11 @@ class LoginPage extends React.Component {
                             </InputAdornment>
                           )
                         }}
-                        onChange={(value) => this.setState({ value })}
+                        onInput={(password) => this.setState({ password })}
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={() => { console.log(this.state); }}>
+                      <Button simple color="primary" size="lg" onClick={() => { this.login() }}>
                         Get started
                       </Button>
                     </CardFooter>
