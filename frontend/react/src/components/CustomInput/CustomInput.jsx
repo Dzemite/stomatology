@@ -71,7 +71,11 @@ function CustomInput({ ...props }) {
         }}
         id={id}
         {...inputProps}
-        onInput={ env => props.onInput(env.target.value) }
+        onInput={env => {
+          if (props.onInput) {
+            props.onInput(env.target.value)
+          }
+        }}
       />
     </FormControl>
   );

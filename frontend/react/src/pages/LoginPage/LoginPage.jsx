@@ -22,6 +22,7 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/bg7.jpg";
 
 import request from "../../../node_modules/superagent";
+import { navigate } from "gatsby";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -43,30 +44,18 @@ class LoginPage extends React.Component {
   }
 
   login() {
-    // fetch('http://localhost:8081/auth', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     login: this.state.login,
-    //     password: this.state.password,
-    //   })
-    // })
-    // .then(res => {
-    //   console.log(res.value());
-    // })
-    // .catch(err => {
-    //   console.error(err);
-    // });
-
     request
       .post('http://localhost:8081/auth')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({ login: this.state.login, password: this.state.password })
       .end(function (err, res) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
         console.log(res.body);
+        navigate('/');
       });
   }
 
