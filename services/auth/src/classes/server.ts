@@ -53,19 +53,14 @@ export class Server {
         this._app.use(bodyParser.urlencoded({
             extended: true
         }));
-        this._app.post("/auth", passport.authenticate(APP_CONFIG.authStrategy, {
+        this._app.post("/auth", passport.authenticate('local', {
             session: false
         }));
         this._app.post("/auth", permissionsGet);
-        this._app.post(
-            "/auth",
-            authRoute);
-        this._app.get(
-            "/auth",
-            authorize(APP_CONFIG.jwtSecret));
-        this._app.get(
-            "/auth",
-            authenticateRoute);
+        this._app.post("/auth", authRoute);
+        
+        this._app.get("/auth", authorize(APP_CONFIG.jwtSecret));
+        this._app.get("/auth", authenticateRoute);
 
         this._app.get("/permissions", authorize(APP_CONFIG.jwtSecret));
         this._app.get("/permissions", permissionsGet);

@@ -13,6 +13,8 @@ export function authorize(key: string): (request: Request, response: Response, n
             return;
         }
 
+        console.log(tokenString);
+
         let token: any;
         try {
             token = jwt.decode(tokenString);
@@ -21,7 +23,7 @@ export function authorize(key: string): (request: Request, response: Response, n
             console.log(error);
             return;
         }
-        jwt.verify(tokenString, key,{algorithms: ['RS256']}, (
+        jwt.verify(tokenString, key,{algorithms: ['RS256', 'HS256']}, (
             err: jwt.JsonWebTokenError | jwt.NotBeforeError | jwt.TokenExpiredError,
             decoded: object | string) => {
                 if (!err) {
@@ -34,6 +36,7 @@ export function authorize(key: string): (request: Request, response: Response, n
                             response.sendStatus(401);
                             break;
                         default:
+                            console.log(err);
                             response.sendStatus(403);
                     }
                     return;
