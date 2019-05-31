@@ -21,12 +21,18 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
 
-import request from "../../../node_modules/superagent";
-import { navigate } from "gatsby";
+import AuthService from "../../services/auth.service";
 
 class LoginPage extends React.Component {
+
+  authService = new AuthService();
+
   constructor(props) {
     super(props);
+
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden"
@@ -41,22 +47,6 @@ class LoginPage extends React.Component {
       }.bind(this),
       700
     );
-  }
-
-  login() {
-    request
-      .post('http://localhost:8081/auth')
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .send({ login: this.state.login, password: this.state.password })
-      .end(function (err, res) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        console.log(res.body);
-        navigate('/');
-      });
   }
 
   render() {
@@ -118,7 +108,7 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg" onClick={() => { this.login() }}>
+                      <Button simple color="primary" size="lg" onClick={() => { this.authService.login(this.state.login, this.state.password) }}>
                         Get started
                       </Button>
                     </CardFooter>

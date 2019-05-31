@@ -5,6 +5,8 @@ import * as cors from "cors";
 import { Application } from "express";
 import { User } from "../interfaces/user";
 import { authRoute } from "../routes/auth";
+import { createUserRoute } from "../routes/createUser";
+import { updateUserRoute } from "../routes/updateUser";
 import { authenticateRoute } from "../routes/authenticate";
 import { APP_CONFIG } from "../config";
 import { AuthStrategies } from "./auth-strategies";
@@ -61,6 +63,10 @@ export class Server {
         
         this._app.get("/auth", authorize(APP_CONFIG.jwtSecret));
         this._app.get("/auth", authenticateRoute);
+        
+        this._app.post("/user", authorize(APP_CONFIG.jwtSecret));
+        this._app.post("/user/create-user", createUserRoute);
+        this._app.post("/user/update-user", updateUserRoute);
 
         this._app.get("/permissions", authorize(APP_CONFIG.jwtSecret));
         this._app.get("/permissions", permissionsGet);

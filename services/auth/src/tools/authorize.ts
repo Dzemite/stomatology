@@ -13,7 +13,7 @@ export function authorize(key: string): (request: Request, response: Response, n
             return;
         }
 
-        console.log(tokenString);
+        console.log(request.headers);
 
         let token: any;
         try {

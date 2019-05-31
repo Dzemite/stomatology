@@ -24,11 +24,26 @@ import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearPr
 import Paginations from "components/Pagination/Pagination.jsx";
 import Badge from "components/Badge/Badge.jsx";
 
+import AuthService from "../../../services/auth.service";
+
 import basicsStyle from "assets/jss/material-kit-react/views/componentsSections/basicsStyle.jsx";
+import { navigate } from "gatsby";
 
 class SectionBasics extends React.Component {
+
+  authService = new AuthService();
+  
   constructor(props) {
     super(props);
+
+    this.authService.checkIsLoggedIn()
+    .then(() => {})
+    .catch(err => {
+      console.error(err);
+      navigate("login-page");
+    });
+
+
     this.state = {
       checked: [24, 22],
       selectedEnabled: "b",
@@ -37,6 +52,7 @@ class SectionBasics extends React.Component {
     };
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
+
   componentDidMount() {
     nouislider.create(this.refs.slider1, {
       start: [40],
