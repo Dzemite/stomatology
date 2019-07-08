@@ -1,0 +1,9 @@
+{
+    "$schema": "./config.schema.json",
+    "port": 8081,
+    "jwtSecret": "testJwtSecret",    
+    "mongoDbUrl": "mongodb://test-emkp-onko-base.teh-lab.ru:17027/CdProxy",
+    "mongoCollectionName": "CD",
+    "mongoArchiveCollectionName": "archiveCD",
+    "authServiceUrl": "https://test-audit-auth.teh-lab.ru"
+}

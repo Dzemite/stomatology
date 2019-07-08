@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es6",
+        "module": "commonjs"
+    },
+    "paths": {
+        "@assets/*": ["./app/assets/*"]
+    }
+}
