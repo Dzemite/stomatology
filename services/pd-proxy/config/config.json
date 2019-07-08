@@ -1,0 +1,9 @@
+{
+    "$schema": "./config.schema.json",
+    "port": 8082,
+    "jwtSecret": "testJwtSecret",    
+    "mongoDbUrl": "mongodb://test-emkp-onko-base.teh-lab.ru:17027/PdProxy",
+    "mongoCollectionName": "patients",
+    "mongoArchiveCollectionName": "archivePD",
+    "authServiceUrl": "https://test-audit-auth.teh-lab.ru"
+}

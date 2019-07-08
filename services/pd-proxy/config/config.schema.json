@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "http://link.to.github",
+    "title": "TehLab Forms auth service schema",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "jwtSecret": {
+            "type": "string"
+        },
+        "port": {
+            "type": "number"
+        },
+        "mongoDbUrl": {
+            "type": "string"
+        },
+        "mongoCollectionName": {
+            "type": "string"
+        },
+        "mongoArchiveCollectionName": {
+            "type": "string"
+        },
+        "authServiceUrl": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "$schema",
+        "port",
+        "jwtSecret",
+        "mongoDbUrl",
+        "mongoCollectionName",
+        "mongoArchiveCollectionName",
+        "authServiceUrl"
+    ],
+    "additionalProperties": false
+}

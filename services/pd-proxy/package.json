@@ -1,0 +1,39 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "start": "node app/index.js",
+    "tslint": "tslint --project tsconfig.json",
+    "seed": "gulp && node app/init.js"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "activedirectory": "^0.7.2",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "gulp": "^3.9.1",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.0.11",
+    "request": "^2.88.0",
+    "superagent": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.3",
+    "@types/express": "^4.11.1",
+    "@types/jsonwebtoken": "^7.2.6",
+    "@types/mongoose": "^5.0.7",
+    "@types/passport": "^0.4.3",
+    "@types/passport-local": "^1.0.32",
+    "gulp-clean": "^0.4.0",
+    "gulp-typescript": "^4.0.1",
+    "run-sequence": "^2.2.1",
+    "tslint-microsoft-contrib": "^5.0.3",
+    "typescript": "^2.7.2"
+  }
+}
