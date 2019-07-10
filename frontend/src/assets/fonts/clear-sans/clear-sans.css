@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'DIN Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./ClearSansLight/ClearSansLight.eot');
+	src: url('./ClearSansLight/ClearSansLight.eot?#iefix') format('eot'),
+        url('./ClearSansLight/ClearSansLight.woff') format('woff'),
+        url('./ClearSansLight/ClearSansLight.woff2') format('woff2'),
+		url('./ClearSansLight/ClearSansLight.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DIN Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./ClearSansRegular/ClearSansRegular.eot');
+	src: url('./ClearSansRegular/ClearSansRegular.eot?#iefix') format('eot'),
+        url('./ClearSansRegular/ClearSansRegular.woff') format('woff'),
+        url('./ClearSansRegular/ClearSansRegular.woff2') format('woff2'),
+		url('./ClearSansRegular/ClearSansRegular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DIN Pro';
+    font-style: italic;
+    font-weight: 400;
+    src: url('./ClearSansItalic/ClearSansItalic.eot');
+	src: url('./ClearSansItalic/ClearSansItalic.eot?#iefix') format('eot'),
+        url('./ClearSansItalic/ClearSansItalic.woff') format('woff'),
+        url('./ClearSansItalic/ClearSansItalic.woff2') format('woff2'),
+		url('./ClearSansItalic/ClearSansItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DIN Pro';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./ClearSansMedium/ClearSansMedium.eot');
+	src: url('./ClearSansMedium/ClearSansMedium.eot?#iefix') format('eot'),
+        url('./ClearSansMedium/ClearSansMedium.woff') format('woff'),
+        url('./ClearSansMedium/ClearSansMedium.woff2') format('woff2'),
+		url('./ClearSansMedium/ClearSansMedium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DIN Pro';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./ClearSansBold/ClearSansBold.eot');
+	src: url('./ClearSansBold/ClearSansBold.eot?#iefix') format('eot'),
+        url('./ClearSansBold/ClearSansBold.woff') format('woff'),
+        url('./ClearSansBold/ClearSansBold.woff2') format('woff2'),
+		url('./ClearSansBold/ClearSansBold.ttf') format('truetype');
+}
