@@ -1,0 +1,43 @@
+@import "../assets/palette.scss";
+
+.main {
+  width: 100%;
+  min-width: 950px;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.main-card {
+  width: 95% !important;
+  min-width: 840px;
+  height: 100%;
+  padding: 25px 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.breadcrumbs {
+  font-family: 'DIN Pro';
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $header-breadcrumbs;
+  
+  width: 100%;
+  margin: 27px 0px 0px 15px;
+  padding-left: 65px;
+}
+
+.breadcrumb-arrow {
+  width: 12px;
+  margin: 0px 15px 0px 18px;
+  color: #697b8c;
+}

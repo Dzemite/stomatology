@@ -1,0 +1,67 @@
+@import "../../../../assets/palette.scss";
+
+.tooltip {
+    height: 70px;
+    width: auto;
+    // width: 180px;
+    padding: 5px 11.5px 7px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: $tooltip-bg;
+    // background-image: url('/assets/img/tooltip.png');
+    // background-repeat: no-repeat;
+}
+
+.tooltip:after {
+    content: "";
+    position: absolute;
+    background-color: $tooltip-bg;
+    // left: 66.5px;
+    // top: 0px;
+    width: 15px;
+    height: 15px;
+
+    box-shadow: -1px -1px rgba($color: $tooltip-shadow, $alpha: 0.08);
+
+    transform: translateY(-55.5px) translateX(5px) rotate(45deg);
+}
+
+.text {
+    height: 37px;
+    width: auto;
+    // width: 158.5px;
+    margin-bottom: 5px;
+
+    .top {
+        font-family: 'DIN Pro';
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: $tooltip-top;
+    }
+
+    .bot {
+        font-family: 'DIN Pro';
+        font-size: 10px;
+        font-weight: 500;
+        font-style: italic;
+        font-stretch: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: $tooltip-bot;
+    }
+
+    .date {
+        font-family: 'DIN Pro';
+        font-size: 10px;
+        font-weight: 500;
+        font-style: italic;
+        font-stretch: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: $tooltip-date;
+    }
+}

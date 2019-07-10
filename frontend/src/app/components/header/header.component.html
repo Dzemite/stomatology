@@ -1,0 +1,59 @@
+<mat-toolbar class="header" fxLayoutAlign="center center">
+  <div class="header-content" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="navigation" fxLayoutGap="30px">
+      <span [routerLink]="['/patients/list']" routerLinkActive="router-link-active" [class.selected]="selected === 0">
+        Список пациентов
+      </span>
+      <span [routerLink]="['/reports/list']" routerLinkActive="router-link-active"  [class.selected]="selected === 1">
+        Список отчетов
+      </span>
+    </div>
+    <div fxLayoutGap="25px" fxLayout="row" fxLayoutAlign="center center">
+      <!-- <i class="material-icons md-24 action" (click)='previous()'>
+        arrow_back
+      </i>
+      <i class="material-icons md-24 action" (click)='next()'>
+        arrow_forward
+      </i> -->
+      <div class="action-container" fxLayoutAlign="center center">
+        <i class="material-icons md-24 action">
+          add_alert
+        </i>
+        <div class="alert yellow" fxLayoutAlign="center center">
+          <span>3</span>
+        </div>
+      </div>
+      <i class="material-icons md-24 action">
+        av_timer
+      </i>
+      <!-- <button mat-raised-button class="exp-btn">
+        <i class="material-icons md-16">
+          get_app
+        </i>
+        ЭКСПОРТ
+      </button>
+      <div fxLayout="row" class="user-info" fxLayoutGap="8px">
+        <div fxLayout="row" fxLayoutGap="16px">
+          <div>
+            <i class="material-icons md-36 user-img" fxLayoutAlign="center center">
+              perm_identity
+            </i>
+          </div>
+          <div fxLayout="column">
+            <span class="name">Боло Йен</span>
+            <span class="position">врач-онколог</span>
+          </div>
+        </div>
+        <button mat-mini-fab [matMenuTriggerFor]="menu" class='mat-elevation-z0' fxLayoutAlign="start start">
+          <i class="material-icons">
+            arrow_drop_down
+          </i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Настройки</button>
+          <button mat-menu-item>Выход</button>
+        </mat-menu>
+      </div> -->
+    </div>
+  </div>
+</mat-toolbar>

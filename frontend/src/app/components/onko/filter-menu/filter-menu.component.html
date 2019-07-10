@@ -1,0 +1,43 @@
+<ng-template>
+  <div class="filter-menu mat-elevation-z4" role="grid" @tooltip cdkTrapFocus cdkTrapFocusAutoCapture fxLayout="column"
+    fxLayoutAlign="start" [style.transformOrigin]="dir.value === 'ltr' ? 'center top' : 'right top'">
+
+    <div fxFlex="39" class="menu-item">
+      <span fxFlex="20" style="padding: 4px">Кейс</span>
+      <div fxFlex="80" fxLayout="column">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-checkbox fxFlex="50" style="margin-left: 10px" [checked]="cases['Подозрение']" (change)="setCaseFilter('Подозрение', $event)">Подозрение</mat-checkbox>
+          <mat-checkbox fxFlex="50" style="margin-left: 25px" [checked]="cases['Диагностика']" (change)="setCaseFilter('Диагностика', $event)">Диагностика</mat-checkbox>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-checkbox fxFlex="50" style="margin-left: 10px" [checked]="cases['Хирургическое лечение']" (change)="setCaseFilter('Хирургическое лечение', $event)">Хирургичес...</mat-checkbox>
+          <mat-checkbox fxFlex="50" style="margin-left: 25px" [checked]="cases['Адъювантная терапия']" (change)="setCaseFilter('Адъювантная терапия', $event)">Адьювантн...</mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <hr fxFlex="1" width="100%" size="2px" color="#d8d8d8" style="margin: 0;">
+    <div fxFlex="29" class="menu-item" fxLayoutAlign="space-between center">
+      <span fxFlex="20">Дата</span>
+      <div fxFlex="60" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <div fxLayoutAlign="end center">
+          <input [matDatepicker]="picker_1" placeholder="Выберете дату" class="first-date" [(ngModel)]="startDateFilter">
+          <mat-datepicker-toggle matSuffix [for]="picker_1"></mat-datepicker-toggle>
+          <mat-datepicker #picker_1></mat-datepicker>
+        </div>
+        <span>–</span>
+        <div fxLayoutAlign="end center">
+          <input [matDatepicker]="picker_2" placeholder="Выберете дату" class="second-date" [(ngModel)]="endDateFilter">
+          <mat-datepicker-toggle matSuffix [for]="picker_2"></mat-datepicker-toggle>
+          <mat-datepicker #picker_2></mat-datepicker>
+        </div>
+      </div>
+    </div>
+    <hr fxFlex="1" width="100%" size="2px" color="#d8d8d8" style="margin: 0;">
+    <div fxFlex="30" class="menu-item" fxLayoutAlign="start center" fxLayoutGap="15px">
+      <a class="clear-btn" fxFlex="50" (click)="clearFilters()">Очистить</a>
+      <button mat-raised-button class="enter-btn" fxFlex="30" (click)="enterFilters()">Применить</button>
+      <a class="cancel-btn" fxFlex="20" fxLayoutAlign="center" (click)="cancel()">Отмена</a>
+    </div>
+
+  </div>
+</ng-template>

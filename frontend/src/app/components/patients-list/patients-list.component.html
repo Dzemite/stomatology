@@ -1,0 +1,58 @@
+<!-- <mat-form-field>
+  <input matInput type="text" [(ngModel)]="searchText" (keyup)="searchPat()" placeholder="Поиск">
+</mat-form-field>
+<br>
+<br> -->
+
+<mat-card class="report-list">
+  <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+    <div fxFlex="100" fxLayoutAlign="space-between center">
+      <span>Список пациентов</span>
+      <div fxLayoutAlign="end center">
+        <mat-icon svgIcon='zoom' class="search-filter"></mat-icon>
+        <input type="text" class="input-filter" placeholder="Поиск..." [(ngModel)]="searchText" (keyup)="searchPat()">
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content fxFlex fxLayout="column">
+    <div>
+      <div class="row" fxLayoutAlign="space-between center">
+        <span>Имя</span>
+        <span fxLayout="row">Фамилия
+          <div fxLayout="column" class="arrows-container">
+            <mat-icon svgIcon='upArrow' class="arrow up"
+              [class.selected]="sortOptions.sort_field === 'lastName' && sortOptions.sort_direction === '-1'"
+              (click)="sortPat({sort_field: 'lastName', sort_direction: '-1'})"></mat-icon>
+            <mat-icon svgIcon='downArrow' class="arrow down"
+              [class.selected]="sortOptions.sort_field === 'lastName' && sortOptions.sort_direction === '1'"
+              (click)="sortPat({sort_field: 'lastName', sort_direction: '1'})"></mat-icon>
+          </div>
+        </span>
+        <span class="sex">Пол</span>
+        <span fxLayout="row">Дата рождения
+          <div fxLayout="column" class="arrows-container">
+            <mat-icon svgIcon='upArrow' class="arrow up"
+              [class.selected]="sortOptions.sort_field === 'dateOfBirth' && sortOptions.sort_direction === '-1'"
+              (click)="sortPat({sort_field: 'dateOfBirth', sort_direction: '-1'})"></mat-icon>
+            <mat-icon svgIcon='downArrow' class="arrow down"
+              [class.selected]="sortOptions.sort_field === 'dateOfBirth' && sortOptions.sort_direction === '1'"
+              (click)="sortPat({sort_field: 'dateOfBirth', sort_direction: '1'})"></mat-icon>
+          </div>
+        </span>
+        <span>МКБ</span>
+      </div>
+      <hr size="1px" color="#e1e1e1">
+      <div class="row data" *ngFor="let pat of patients; let odd = odd; let even = even;" fxLayoutAlign="space-between center"
+        [class.odd]="odd" [class.even]="even" [routerLink]="['/patient/' + pat._id]"
+        routerLinkActive="router-link-active">
+        <span>{{pat.firstName}}</span>
+        <span>{{pat.lastName}}</span>
+        <span class="sex">{{pat.sex === 'M' ? 'М' : 'Ж'}}</span>
+        <span>{{pat.dateOfBirth}}</span>
+        <span>{{pat.mkb}}</span>
+      </div>
+    </div>
+    <mat-paginator [length]="patientsLength" [pageSize]="50" [hidePageSize]="true" (page)="changePage($event)">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

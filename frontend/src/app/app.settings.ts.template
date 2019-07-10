@@ -1,0 +1,16 @@
+export const APP_SETTINGS = {
+    DEAFAULT_STATE: '${defaultState}',
+    MODULES: [ ${modulesList} ],
+    PATIENTS_SERVICE_CONTEXT: '${patientsServiceContext}',
+    OBJECTS_SERVICE_CONTEXT: '${objectsServiceContext}',
+    OBJECTS_KPI_PATH: '${objectsKpiPath}',
+    TITLE: '${title}',
+    FAVICONS: [{
+        faviconUrl: '${faviconUrl}'
+    }],
+    BREADCRUMBS: {
+        parentName: '${parentName}',
+        systemName: '${systemName}'
+    },
+    DOCUMENTS_URL: '${documentsUrl}'
+};

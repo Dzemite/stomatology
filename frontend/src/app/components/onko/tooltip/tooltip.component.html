@@ -1,0 +1,21 @@
+<ng-template>
+  <div class="tooltip mat-elevation-z4" role="grid" @tooltip cdkTrapFocus cdkTrapFocusAutoCapture fxLayout="row"
+    fxLayoutAlign="end end" [style.transformOrigin]="dir.value === 'ltr' ? 'center top' : 'right top'">
+    <div class="text" fxLayout="column" fxLayoutAlign="end end">
+
+      <span class="date">{{formatDate(data.date)}}</span>
+
+      <!-- <span class="top" *ngIf="data.title && data.title.length > 22">
+        {{cutString(data.title, 22)}}
+      </span> -->
+      <span class="top">{{data.title}}</span>
+
+      <hr size="2px" width="108px" color="#e2e2e2" style="margin-right: 0px">
+
+      <!-- <span class="bot" *ngIf="data.clinic && data.clinic.length > 20">
+        {{cutString(data.clinic, 20)}}
+      </span> -->
+      <span class="bot">{{data.clinic}}</span>
+    </div>
+  </div>
+</ng-template>

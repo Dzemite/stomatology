@@ -1,0 +1,258 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="24px">
+  <div fxLayout="row" fxLayoutGap="19px">
+
+    <div class="personal-inf" fxFlex="15" fxLayout="column" fxLayoutAlign="start center">
+      <div fxLayout="column" fxLayoutAlign="start center" class="full-name">
+        <span *ngIf="!patient?.lastName">–</span>
+        <span *ngIf="patient?.lastName" class="last-name">{{patient.lastName}}</span>
+
+        <span *ngIf="!patient?.firstName">–</span>
+        <span *ngIf="patient?.firstName">{{patient.firstName}}</span>
+
+        <span *ngIf="!patient?.middleName">–</span>
+        <span *ngIf="patient?.middleName">{{patient.middleName}}</span>
+      </div>
+
+      <hr size="2" width="91px" color="#979ea7" style="margin: 20px 0px 15px 0px">
+
+      <span *ngIf="!patient?.dateOfBirth">–</span>
+      <span *ngIf="patient?.dateOfBirth">
+        <span class="birth-num">{{getDate(patient.dateOfBirth)}}</span>
+        {{getMonth(patient.dateOfBirth)}}
+        <span class="birth-num">{{getYear(patient.dateOfBirth)}}</span>
+      </span>
+
+      <div fxLayout="row">
+        <span *ngIf="!age">–</span>
+        <span *ngIf="age">
+          <span class="birth-num">{{age}}</span>
+          {{declOfNum(age, ['год', 'года', 'лет'])}} &nbsp;&nbsp;
+        </span>
+
+        <span *ngIf="!patient?.sex">–</span>
+        <span *ngIf="patient?.sex && patient.sex === 'MAN'" fxLayoutAlign="center center">
+          <mat-icon svgIcon='mars' style="width: 20px"></mat-icon>
+        </span>
+        <span *ngIf="patient?.sex && patient.sex === 'WOMAN'" fxLayoutAlign="center center">
+          <mat-icon svgIcon='femenine' style="width: 20px"></mat-icon>
+        </span>
+      </div>
+
+      <!-- <mat-icon [svgIcon]='patientBody' *ngIf="patientID !== '1'" style="height: 362.5px; width: 170.5px; margin: 60px 0px;"></mat-icon> -->
+      <div #body></div>
+
+      <hr size="2" width="58px" color="#979ea7" style="margin: 0px 0px 20px 0px">
+
+      <span class="personal-inf-header">СНИЛС</span>
+      <span *ngIf="!patient?.snilsNumber" class="numbers" style="margin-bottom: 15px">–</span>
+      <span *ngIf="patient?.snilsNumber" class="numbers" style="margin-bottom: 15px">{{patient.snilsNumber}}</span>
+
+      <span class="personal-inf-header">ОМС</span>
+      <span *ngIf="!patient?.omsSeriesAndNumber" class="numbers" style="margin-bottom: 15px">–</span>
+      <span *ngIf="patient?.omsSeriesAndNumber" class="numbers"
+        style="margin-bottom: 15px">{{patient.omsSeriesAndNumber}}</span>
+
+      <hr size="2" width="58px" color="#979ea7" style="margin: 0px 0px 20px 0px">
+
+      <span class="personal-inf-header">Телефон</span>
+      <span *ngIf="!patient?.phone" class="numbers" style="margin-bottom: 15px">–</span>
+      <span *ngIf="patient?.phone" class="numbers" style="margin-bottom: 15px">{{patient.phone}}</span>
+    </div>
+
+    <div style="position: relative" fxLayout="column" fxFlex="85" fxLayoutGap="37px">
+      <mat-card class="diagnosis">
+        <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+          <span>Диагноз</span>
+        </mat-card-header>
+        <mat-card-content fxFlex fxLayout="column">
+
+          <div #diagnosis></div>
+
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="route">
+        <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayoutAlign="space-between center">
+            <span>Маршрут</span>
+            <div fxLayoutAlign="end center">
+              <!-- <i class="material-icons md-34_2 search-filter">
+                search
+              </i> -->
+              <mat-icon svgIcon='zoom' class="search-filter"></mat-icon>
+              <input type="text" class="input-filter" placeholder="Поиск..." [(ngModel)]="hisNameFilter"
+                (keyup)="inputFilterKeyUp()">
+              <button class="btn-filter" [appFilterMenuTriggerFor]="filterMenu">
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+                  <span>Фильтр</span>
+                  <mat-icon svgIcon='controls' style="width: 14px"></mat-icon>
+                </div>
+              </button>
+              <app-filter-menu #filterMenu (filters)="acceptFilters($event)"></app-filter-menu>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content fxFlex fxLayout="column">
+          <div fxLayout="column" style="margin-top: 24px">
+            <div>
+              <app-patients-route [koef]="koef" [data]="routeData" (items)="itemsGet($event)"
+                [curentState]="routeData.length - 1"></app-patients-route>
+            </div>
+            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" class="period header">
+              <div class="period-name"><b>Наименование</b></div>
+              <div class="period-clinic"><b>ЛПУ</b></div>
+              <div class="period-state"><b>Этап</b></div>
+              <div class="period-date"><b>Дата</b></div>
+            </div>
+            <hr width="100%" size="2" color="#dddddd">
+            <div fxLayout="column" class="history" *ngIf="historyForView">
+
+              <!-- 
+                | filterByCategory:hisCaseFilter
+                | filterByDate:hisPeriodFilter
+                | filterByName:hisNameFilter;
+              -->
+              <div fxFlex="100" *ngFor="let period of historyForView | filterByName:hisNameFilter; let odd = odd;"
+                fxLayout="row" fxLayoutAlign="space-between center" [class.odd]="odd" [class.period]="true">
+                <div fxLayoutAlign="space-between center" class="period-name">
+                  <a [href]="documentsUrl + period.url" target="_blank" *ngIf="period.title?.length > 28"
+                    [matTooltip]="period.title" matTooltipClass="up-tooltip" matTooltipPosition="above">
+                    {{cutString(period.title, 28)}}
+                  </a>
+                  <a [href]="documentsUrl + period.url" target="_blank"
+                    *ngIf="period.title?.length <= 28">{{period.title}}</a>
+                </div>
+                <div fxLayoutAlign="space-between center" class="period-clinic" [matTooltip]="period.clinic"
+                  *ngIf="period.clinic?.length > 21" matTooltipClass="up-tooltip" matTooltipPosition="above">
+                  {{cutString(period.clinic, 21)}}</div>
+                <div fxLayoutAlign="space-between center" class="period-clinic" *ngIf="period.clinic?.length <= 21">
+                  {{period.clinic}}</div>
+                <div fxLayoutAlign="space-between center" class="period-state">{{period.category}}</div>
+                <div fxLayoutAlign="space-between center" class="period-date">{{formatDate(period.date)}}</div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="42px">
+    <mat-card fxFlex>
+      <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+        <span>План лечения</span>
+      </mat-card-header>
+
+      <mat-card-content fxFlex="100">
+        <div fxFlex fxLayout="column" style="margin-top: 24px">
+          <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+          <div>
+            <button mat-raised-button class="btn-filter" [matMenuTriggerFor]="menu_1">
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+                <b>Фильтр</b>
+                <i class="material-icons">
+                  filter_list
+                </i>
+              </div>
+            </button>
+            <mat-menu #menu_1="matMenu">
+              <button mat-menu-item>Подозрение</button>
+              <button mat-menu-item>Диагностика</button>
+              <button mat-menu-item>Хирургическое лечение</button>
+              <button mat-menu-item>Адьютивная терапия</button>
+            </mat-menu>
+          </div>
+          <div> -->
+          <!-- Фильтра теги -->
+          <!-- <button mat-raised-button class="btn-all" (click)="clicked()">
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+                <b>Все</b>
+                <i class="material-icons">
+                  clear
+                </i>
+              </div>
+            </button>
+          </div>
+        </div> -->
+          <div fxFlex>
+            <table fxFlex mat-table #table [dataSource]="['–']" style="margin-top: 12px">
+              <ng-container matColumnDef="column">
+                <th class="bg-cell" mat-header-cell *matHeaderCellDef></th>
+                <td class="bg-cell" mat-cell *matCellDef="let row"> <b><a href="/assets/files/3.90.pdf"
+                      target="_blank">Хирургическое
+                      лечение (Заключение ВК от 24.08.2016)</a></b> </td>
+              </ng-container>
+              <ng-container matColumnDef="column2">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row"> <b></b> </td>
+              </ng-container>
+              <ng-container matColumnDef="column3">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row"> <b></b> </td>
+              </ng-container>
+              <ng-container matColumnDef="column4">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row"> <b></b> </td>
+              </ng-container>
+
+              <tr mat-row *matRowDef="let row; columns: ['column', 'column2', 'column3', 'column4'];"></tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex>
+      <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+        <span>Рекомендации &nbsp; <span class="recommendations">(RUSSCO, AOP)</span></span>
+      </mat-card-header>
+
+      <mat-card-content fxFlex="100">
+        <div fxFlex fxLayout="column" style="margin-top: 24px">
+          <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div>
+              <button mat-raised-button class="btn-filter" [matMenuTriggerFor]="menu_2">
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+                  <b>Фильтр</b>
+                  <i class="material-icons">
+                    filter_list
+                  </i>
+                </div>
+              </button>
+            </div>
+            <div fxLayoutGap="10px"> -->
+
+          <!-- Фильтра теги -->
+          <!-- <button mat-raised-button class="btn-all">
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+                  <b>Хирургическое лечение</b>
+                  <i class="material-icons">
+                    clear
+                  </i>
+                </div>
+              </button>
+              <button mat-raised-button class="btn-all">
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4px">
+                  <b>Диагностика</b>
+                  <i class="material-icons">
+                    clear
+                  </i>
+                </div>
+              </button>
+            </div>
+          </div> -->
+          <div>
+            <div fxLayout="column" *ngIf="dataSource">
+              <div fxFlex="100" *ngFor="let period of dataSource; let odd = odd;" fxLayout="row"
+                fxLayoutAlign="space-between center" [class.odd]="odd" [class.period]="true">
+                <div fxLayoutAlign="space-between center" class="period-name">
+                  <a [href]="period.ref" target="_blank">{{period.dash}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

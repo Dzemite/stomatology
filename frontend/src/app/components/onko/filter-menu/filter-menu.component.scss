@@ -1,0 +1,77 @@
+@import "../../../../assets/palette.scss";
+
+* {
+    font-family: 'DIN Pro';
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    color: $filter-menu-color;
+}
+
+.filter-menu {
+    height: 196px;
+    width: 450px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: $filter-menu-bg;
+    // background-image: url('/assets/img/tooltip.png');
+    // background-repeat: no-repeat;
+}
+
+.filter-menu:after {
+    content: "";
+    position: absolute;
+    background-color: $filter-menu-bg;
+    // left: 66.5px;
+    // top: 0px;
+    width: 15px;
+    height: 15px;
+
+    box-shadow: -1px -1px rgba($color: $filter-menu-shodow, $alpha: 0.08);
+
+    transform: translateY(-7.5px) translateX(370px) rotate(45deg);
+}
+
+.menu-item {
+    padding: 10px 20px;
+}
+
+.enter-btn {
+    background-color: $filter-enter-bg;
+    color: $filter-enter-color;
+}
+
+.cancel-btn {
+    color: $filter-cancel-color;
+    cursor: pointer;
+}
+
+.clear-btn {
+    color: $filter-clear-color;
+    cursor: pointer;
+}
+
+.first-date,
+.second-date {
+    width: 109px;
+    height: 25px;
+
+    padding: 5px;
+
+    border: 1px solid #c5d9e8;
+    border-right: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: $filter-checkbox-border;
+    border: 1px solid $filter-checkbox-border;
+    border-radius: 4px;
+}
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: $filter-checkbox-checked-bg !important;
+}

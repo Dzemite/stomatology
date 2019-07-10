@@ -1,0 +1,17 @@
+<mat-card class="report-list">
+  <mat-card-header fxFlex="100" fxLayoutAlign="start center">
+    <span>Список отчетов</span>
+  </mat-card-header>
+  <mat-card-content fxFlex fxLayout="column">
+    <div>
+      <div class="row" fxLayoutAlign="start center">
+        <span>Отчет</span>
+      </div>
+      <hr size="1px" color="#e1e1e1">
+      <div class="row data">
+        <span [routerLink]="['/report/spb']" routerLinkActive="router-link-active">Статистика заболеваемости ЗНО г.
+          Санкт-Петербург</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
