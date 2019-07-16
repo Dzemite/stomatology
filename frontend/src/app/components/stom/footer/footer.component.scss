@@ -1,0 +1,12 @@
+@import "../../../../../src/assets/palette.scss";
+
+footer {
+  background-color: $footer-bg;
+  height: 90px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+
+  padding: 0 35px 0 30px;
+
+  position: relative;
+  z-index: 3;
+}

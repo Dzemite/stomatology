@@ -1,0 +1,120 @@
+@import "../../../../../src/assets/palette.scss";
+
+::ng-deep .header {
+  position: relative;
+  z-index: 3;
+  padding: 0 35px 0 30px;
+  background-color: $header-bg;
+  height: 67px;
+
+  .mat-card-header-text {
+    display: none;
+  }
+
+  .header-content {
+    width: 1500px;
+  }
+}
+
+.user-info {
+  div {
+    .user-img {
+      width: 40px;
+      height: 40px;
+      background-color: #8ca0b3;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    span {
+      font-size: 13px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #697b8c;
+    }
+  }
+
+  button {
+    width: 16px !important;
+    height: 16px !important;
+    background-color: #fff;
+    color: #000;
+    margin-top: 0;
+  }
+}
+
+.name {
+  font-family: 'DIN Pro Bold';
+}
+
+.position {
+  font-family: 'DIN Pro';
+}
+
+.action {
+  color: $header-action;
+  cursor: pointer;
+}
+
+.exp-btn {
+  width: 142px;
+  height: 36px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  background-color: #3f5992;
+  color: #fff;
+}
+
+.alert {
+  width: 19px;
+  height: 19px;
+  border-radius: 90px;
+
+  position: absolute;
+  transform: translate(10px, -10px);
+
+  span {
+    font-family: Roboto;
+    font-size: 12.5px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+}
+
+.yellow {
+  background-color: $header-alert-yellow;
+}
+
+.blue {
+  background-color: $header-alert-blue;
+}
+
+.action-container {
+  width: 40px;
+  height: 40px;
+}
+
+.navigation {
+  span {
+    color: $header-navigation;
+    opacity: 0.6;
+
+    font-family: "DIN Pro";
+    font-size: 16px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    &.selected {
+      text-decoration: underline;
+      opacity: 1.0;
+    }
+  }
+}

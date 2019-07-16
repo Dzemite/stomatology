@@ -1,0 +1,12 @@
+<mat-toolbar class="header" fxLayoutAlign="center center">
+  <div class="header-content" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="navigation" fxLayoutGap="30px">
+      <span [routerLink]="['/patients/list']" routerLinkActive="router-link-active" [class.selected]="selected === 0">
+        Список пациентов
+      </span>
+      <span [routerLink]="['/reports/list']" routerLinkActive="router-link-active"  [class.selected]="selected === 1">
+        Список отчетов
+      </span>
+    </div>
+  </div>
+</mat-toolbar>

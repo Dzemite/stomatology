@@ -1,4 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { IOnkoConfig } from '../interfaces/i-onko-config';
+import { IStomConfig } from '../interfaces/i-stom-config';
 
-export const APP_CONFIG = new InjectionToken<IOnkoConfig>('APP_CONFIG');
+export const APP_CONFIG = new InjectionToken<IStomConfig>('APP_CONFIG');

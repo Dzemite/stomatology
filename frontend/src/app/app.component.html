@@ -1,19 +1,2 @@
 <app-global-preloader></app-global-preloader>
-<div fxLayout="column" class="main">
-  <div fxFlex>
-    <app-header [selected]="selectTab"></app-header>
-    <div fxLayout="row" fxLayoutAlign="center start" style="margin: 18px 32px; height: calc(100% - 100px);">
-      <div fxLayout="column" fxLayoutAlign="start center" class="container">
-        <div class="breadcrumbs" fxLayoutAlign="start center">
-          <!-- {{systemParentName}} <mat-icon svgIcon='arrowRight' class="breadcrumb-arrow"></mat-icon>  -->
-          {{systemName}}
-        </div>
-        <div class="main-card" fxLayout="row" fxLayoutAlign="center">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <app-footer fxFlex="90px"></app-footer>
-</div>
+<router-outlet></router-outlet>

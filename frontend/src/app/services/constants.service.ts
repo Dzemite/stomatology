@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { IOnkoConfig } from '../interfaces/i-onko-config';
+import { IStomConfig } from '../interfaces/i-stom-config';
 import { APP_CONFIG } from '../constants/app-config.constant';
 
 @Injectable({
@@ -649,5 +649,5 @@ export class ConstantsService {
     'C61-M'
   ];
 
-  constructor(@Inject(APP_CONFIG) private _config: IOnkoConfig) { }
+  constructor(@Inject(APP_CONFIG) private _config: IStomConfig) { }
 }
