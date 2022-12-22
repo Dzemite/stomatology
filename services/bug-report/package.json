@@ -17,7 +17,7 @@
     "activedirectory": "^0.7.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.2.1",
+    "jsonwebtoken": "^9.0.0",
     "request": "^2.85.0",
     "rfc2253": "^0.1.1",
     "superagent": "^3.8.2",
