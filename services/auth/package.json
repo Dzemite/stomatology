@@ -36,7 +36,7 @@
     "@types/passport-local": "^1.0.32",
     "gulp-clean": "^0.4.0",
     "gulp-typescript": "^4.0.1",
-    "jsonwebtoken": "^8.2.0",
+    "jsonwebtoken": "^9.0.0",
     "run-sequence": "^2.2.1",
     "tslint-microsoft-contrib": "^5.0.3",
     "typescript": "^2.7.2"
